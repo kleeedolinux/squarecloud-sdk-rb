@@ -5,24 +5,24 @@ client = Squarecloud::Client.new(api_key: 'YOUR_API_KEY')
 
 
 user = client.user
-puts "User: 
-puts "Plan: 
+puts "User: #{user.username}"
+puts "Plan: #{user.plan}"
 
 
 puts "\nApplications:"
 apps = client.all_apps
 apps.each do |app|
-  puts "- 
+  puts "- #{app.id} (#{app.name})"
 end
 
 
 if apps.any?
   app = apps.first
-  puts "\nApplication Status for 
+  puts "\nApplication Status for #{app.name}:"
   status = app.status
-  puts "Running: 
-  puts "CPU: 
-  puts "RAM: 
+  puts "Running: #{status.running}"
+  puts "CPU: #{status.cpu}%"
+  puts "RAM: #{status.ram}MB"
   
   
   puts "\nLogs:"
