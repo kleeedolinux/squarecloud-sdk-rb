@@ -1,4 +1,4 @@
-name: Ruby Gem
+name: Ruby Gem Release
 
 on:
   push:
@@ -6,12 +6,12 @@ on:
       - 'v*'
 
 jobs:
-  build:
-    name: Build + Publish
+  release:
+    name: Build + Test + Release
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      packages: write
+      id-token: write  
+      contents: write  
 
     steps:
     - uses: actions/checkout@v4
@@ -27,19 +27,17 @@ jobs:
     - name: Install dependencies
       run: bundle install
     
+    - name: Run Rubocop
+      run: bundle exec rubocop
+      
     - name: Run tests
       run: bundle exec rake spec
     
     - name: Build gem
       run: gem build *.gemspec
+      
+    - name: Verify gem
+      run: gem spec *.gem --ruby
     
-    - name: Publish to RubyGems
-      run: |
-        mkdir -p $HOME/.gem
-        touch $HOME/.gem/credentials
-        chmod 0600 $HOME/.gem/credentials
-        printf -- "---\n:rubygems_api_key: ${GEM_HOST_API_KEY}\n" > $HOME/.gem/credentials
-        gem push *.gem
-      env:
-        GEM_HOST_API_KEY: "${{secrets.RUBYGEMS_API_KEY}}"
-      if: success() 
+    - name: Release Gem
+      uses: rubygems/release-gem@v1 
