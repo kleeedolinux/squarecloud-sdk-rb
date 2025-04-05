@@ -8,7 +8,7 @@
   <img alt="Square Cloud Banner" src="https://cdn.squarecloud.app/png/github-readme.png">
 </div>
 
-<h1 align="center">squarecloud-api</h1>
+<h1 align="center">squarecloud-unofficial</h1>
 
 <p align="center">A Ruby SDK for consuming the <a href="https://squarecloud.app" target="_blank">Square Cloud</a> API.</p>
 
