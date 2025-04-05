@@ -5,7 +5,7 @@ require 'squarecloud/version'
 Gem::Specification.new do |spec|
   spec.name          = "squarecloud-unofficial"
   spec.version       = Squarecloud::VERSION
-  spec.authors       = ["Júlia Klee	"]
+  spec.authors       = ["Júlia Klee"]
   spec.email         = ["me@juliaklee.wtf"]
   spec.summary       = %q{Unofficial Ruby SDK for the Square Cloud API}
   spec.description   = %q{An unofficial Ruby library for interacting with the Square Cloud API, providing Ruby developers with easy access to application management, backup systems, domains, and more}
